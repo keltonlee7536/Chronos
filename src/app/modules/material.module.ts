@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from "@angular/material/tabs"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { MatTabsModule } from "@angular/material/tabs"
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   exports: [
     MatToolbarModule,
@@ -36,7 +38,8 @@ import { MatTabsModule } from "@angular/material/tabs"
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    BrowserAnimationsModule
 
   ]
 })

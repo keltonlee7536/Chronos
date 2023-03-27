@@ -12,14 +12,12 @@
                 <mat-icon>add</mat-icon>
             </button>
 
-            <!-- <div>{{employees | json}}</div> -->
         </mat-card>
-
         <mat-card class="hours">
             <table>
                 <thead>
                     <th>Name</th>
-                    <th *ngFor="let day of weekdays">{{day}}</th>
+                    <th *ngFor="let day of weekdays">{{day | titlecase}}</th>
                     <th>Total Hours</th>
                     <th></th>
                 </thead>
