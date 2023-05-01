@@ -5,7 +5,7 @@ import { Department } from 'src/app/interfaces/department';
 import { DepartmentsService } from 'src/app/services/departments.service';
 import { Employee } from '../../interfaces/employee'
 import { EmployeeService } from 'src/app/services/employee.service'
-import { Observable } from 'rxjs';
+import { Observable, tap, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-timesheet',
@@ -31,9 +31,16 @@ export class TimesheetComponent implements OnInit {
   ngOnInit(): void {
     this.$departments = this.departmentsService.getDepartments();
 
-    this.$departments.subscribe(x => {
-        this.department = x.find(dept => dept.id === this.route.snapshot.params['id'])
-    });
+    this.$departments.pipe(
+      switchMap(departments => {
+        this.department = departments.find(dept => dept.id === this.route.snapshot.params['id'])
+        return this.employeeService.getEmployeeHoursByDepartment(this.department.id);
+      }),
+      tap(employees => {
+        this.employees = employees;
+      })
+    ).subscribe();
+    
 }
 
 addEmployee(): void {
@@ -77,13 +84,22 @@ getTotalHours(employee: Employee): number {
       + employee.thursday + employee.friday + employee.saturday + employee.sunday;
 }
 
-deleteEmployee(index: number): void {
+deleteEmployee(employee: Employee, index: number): void {
+  if (employee.id) {
+      this.employeeService.deleteEmployeeHours(employee);
+  }
+
   this.employees.splice(index, 1);
 }
 
+
 submit(): void {
   this.employees.forEach(employee => {
-    this.employeeService.saveEmployeeHours(employee);
+      if (employee.id) {
+          this.employeeService.updateEmployeeHours(employee);
+      } else {
+          this.employeeService.saveEmployeeHours(employee);
+      }
   });
 
   this.router.navigate(['./departments']);
