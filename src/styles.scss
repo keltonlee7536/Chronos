@@ -8,3 +8,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: center;
     height: calc(100% - 64px);
 }
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.padding-none {
+    padding: 0px !important;
+}
