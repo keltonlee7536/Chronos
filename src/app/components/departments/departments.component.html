@@ -5,7 +5,6 @@
     </div>
     <mat-card>
         <mat-list>
-            <!-- <mat-list-item *ngFor="let department of departments" (click)="goToDepartment(department.id)"> -->
             <mat-list-item *ngFor="let department of $departments | async" (click)="goToDepartment(department.id)">
                 {{department.name}}
             </mat-list-item>
@@ -13,6 +12,8 @@
     </mat-card>
 
     <mat-card>
-        <div mat-list-item routerLink="./analytics">Analytics</div>
+        <mat-list>
+            <mat-list-item routerLink="/analytics">Analytics</mat-list-item>
+        </mat-list>
     </mat-card>
 </div>

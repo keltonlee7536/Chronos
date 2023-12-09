@@ -11,7 +11,7 @@ export class AnalyticsTableComponent implements OnInit {
   @Input()
   departmentId: string;
 
-  weekdays: string[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  weekdays: string[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
   employees: Employee[] = [];
   
   constructor(
